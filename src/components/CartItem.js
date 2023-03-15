@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import "./Cart.css";
-import { cartActions } from "./../store/cartSlice";
-const CartItem = ({ name, quantity, total, price, id }) => {
+import { cartActions } from "../store/cart-slice";
+const CartItem = ({ name, totalQuantity, total, price, id }) => {
   const dispatch = useDispatch();
   const removeHandler = () => {
     dispatch(cartActions.removeFromCart(id));
@@ -17,10 +17,11 @@ const CartItem = ({ name, quantity, total, price, id }) => {
     );
   };
   return (
+    <li>
     <div className="cartItem">
       <h2> {name}</h2>
       <p>${price} /-</p>
-      <p>x{quantity}</p>
+      <p>x{totalQuantity}</p>
       <article>Total ${total}</article>
       <button className="cart-actions" onClick={removeHandler}>
         -
@@ -29,6 +30,7 @@ const CartItem = ({ name, quantity, total, price, id }) => {
         +
       </button>
     </div>
+    </li>
   );
 };
 
